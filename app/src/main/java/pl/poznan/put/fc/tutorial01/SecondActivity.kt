@@ -12,9 +12,11 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         number.text = RandomGenerator.nextInt(1,60).toString()
+        // TODO: dodaj rejestrowanie wygenerowanego numeru
     }
 
     fun onClickBack(view: View?){
+        // TODO: dodaj śledzenie przycisku Back
         finish()
     }
 
