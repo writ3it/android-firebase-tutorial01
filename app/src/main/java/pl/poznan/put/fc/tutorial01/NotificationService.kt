@@ -1,5 +1,8 @@
 package pl.poznan.put.fc.tutorial01
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.media.RingtoneManager
 import android.net.Uri
 import android.support.v4.app.NotificationCompat
@@ -19,8 +22,14 @@ class NotificationService : FirebaseMessagingService() {
 
     private fun createNotification(message: RemoteMessage) {
         val sound = getDefaultNotificationSound()
-        val builder = getNotificationBuilder(message,sound)
+        val icon = getLargeIcon()
+        val builder = getNotificationBuilder(message,sound,icon)
         runNotification(builder)
+    }
+
+    private fun getLargeIcon(): Bitmap {
+        return BitmapFactory.decodeResource(applicationContext.resources,
+        R.mipmap.ic_launcher_round)
     }
 
     private fun runNotification(builder: NotificationCompat.Builder) {
@@ -29,10 +38,12 @@ class NotificationService : FirebaseMessagingService() {
         }
     }
 
-    private fun getNotificationBuilder(message: RemoteMessage, sound: Uri):NotificationCompat.Builder{
+    private fun getNotificationBuilder(message: RemoteMessage, sound: Uri, icon:Bitmap):NotificationCompat.Builder{
         val notification = message.notification!!
         return NotificationCompat.Builder(this, getString(R.string.ChannelId))
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setLargeIcon(icon)
+            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setColor(Color.rgb(0,255,0))
             .setContentTitle(notification.title)
             .setContentText(notification.body)
             .setSound(sound)
