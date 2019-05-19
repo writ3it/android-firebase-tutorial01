@@ -5,18 +5,20 @@ import android.os.Bundle
 import android.view.View
 import kotlin.random.Random
 import kotlinx.android.synthetic.main.activity_second.*
+import pl.poznan.put.fc.tutorial01.Tracking.Track
 
 class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        number.text = RandomGenerator.nextInt(1,60).toString()
-        // TODO: dodaj rejestrowanie wygenerowanego numeru
+        val drawnNum = RandomGenerator.nextInt(1,60)
+        number.text = drawnNum.toString()
+        Track.drawnNumber(drawnNum)
     }
 
     fun onClickBack(view: View?){
-        // TODO: dodaj śledzenie przycisku Back
+        Track.buttonClicked("Back")
         finish()
     }
 

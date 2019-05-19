@@ -10,12 +10,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO: zainicjuj obiekt pomocniczy Track
+        Track.initialize(applicationContext)
         setContentView(R.layout.activity_main)
     }
 
     fun onClickMeBtn(view: View?){
-        // TODO: dodaj śledzenie przycisku Click me
+        Track.buttonClicked("Click Me!")
         val intent = Intent(this, SecondActivity::class.java)
         startActivity(intent)
     }
